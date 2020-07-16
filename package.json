@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "babel-node index.js",
-    "dev:start": "clear; nodemon --exec babel-node index.js",
+    "dev": "clear; nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

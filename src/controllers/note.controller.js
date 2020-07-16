@@ -10,8 +10,7 @@ class NoteController {
   }
 
   async create(req, res) {
-    req.body.userId = req.userId;
-    let note = await Note.create(req.body);
+    let note = await Note.create({ ...req.body, userId: req.userId });
     return res.status(200).send(note);
   }
 
