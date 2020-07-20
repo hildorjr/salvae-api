@@ -20,6 +20,14 @@ const UserSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
+UserSchema.set('toJSON', {
+  transform: function (doc, ret, options) {
+      ret.id = ret._id;
+      delete ret._id;
+      delete ret.__v;
+  }
+});
+
 UserSchema.pre('save', function(next) {
     this.password = bcrypt.hashSync(this.password, 10);
     return next();

@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-
 module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -21,7 +20,7 @@ module.exports = (req, res, next) => {
 
   jwt.verify(token, process.env.JWT_SALT, (err, decoded) => {
     if (err)
-      return res.status(401).send({ error: 'Invalid token' });
+      return res.status(401).send({ error: `${err.name} - ${err.message}` });
 
     req.userId = decoded.id;
     return next();

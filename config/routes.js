@@ -1,18 +1,28 @@
+import express from 'express';
+
 import NoteController from './../src/controllers/note.controller';
 import UserController from './../src/controllers/user.controller';
 import AuthMiddleware from '../src/middlewares/auth'
 
-export default (router) => {
+const routes = express.Router();
 
-  // User
-  router.post('/register', UserController.register);
-  router.post('/login', UserController.login);
+routes.get('/', (req, res) => {
+  res.json({
+    name: 'salvae-api',
+    version: '1.0.0',
+  });
+});
 
-  // Notes
-  router.use('/notes', AuthMiddleware);
+// User
+routes.post('/register', UserController.register);
+routes.post('/login', UserController.login);
 
-  router.get('/notes', NoteController.getAll);
-  router.post('/notes', NoteController.create);
-  router.put('/notes/:id', NoteController.update);
-  router.delete('/notes/:id', NoteController.delete);
-}
+// Notes
+routes.use('/notes', AuthMiddleware);
+
+routes.get('/notes', NoteController.getAll);
+routes.post('/notes', NoteController.create);
+routes.put('/notes/:id', NoteController.update);
+routes.delete('/notes/:id', NoteController.delete);
+
+module.exports = routes;

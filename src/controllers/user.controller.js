@@ -1,13 +1,14 @@
-import User from  '../models/user.model';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
+import User from  '../models/user.model';
+
 dotenv.config();
 
 function generateToken(user) {
-  return jwt.sign({ id: user._id }, process.env.JWT_SALT, {
-    expiresIn: 86400,
+  return jwt.sign({ id: user.id }, process.env.JWT_SALT, {
+    expiresIn: '7d',
   });
 }
 
