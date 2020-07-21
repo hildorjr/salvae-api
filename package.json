@@ -27,7 +27,9 @@
     "helmet": "^3.23.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.24",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
