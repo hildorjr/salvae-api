@@ -2,7 +2,7 @@
   "name": "salvae-api",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",
     "dev": "clear; nodemon --exec babel-node index.js",
@@ -29,13 +29,13 @@
     "mongoose": "^5.9.24",
     "morgan": "^1.10.0",
     "swagger-jsdoc": "^4.0.0",
-    "swagger-ui-express": "^4.1.4"
-  },
-  "devDependencies": {
+    "swagger-ui-express": "^4.1.4",
     "@babel/core": "^7.10.5",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "babel-loader": "^8.1.0",
     "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
   }
 }
