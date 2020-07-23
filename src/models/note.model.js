@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
+import Cryptr from 'cryptr';
 import dotenv from 'dotenv';
-import SimpleCrypto from 'simple-crypto-js';
 
 dotenv.config();
 
-const simpleCrypto = new SimpleCrypto(process.env.SALT);
+const cryptr = new Cryptr(process.env.SALT);
 
 const NoteSchema = new mongoose.Schema({
   userId:  {
@@ -27,15 +27,15 @@ NoteSchema.set('toJSON', {
     ret.id = ret._id;
     delete ret._id;
     delete ret.__v;
-    ret.title = simpleCrypto.decrypt(ret.title);
-    ret.content = simpleCrypto.decrypt(ret.content);
+    ret.title = cryptr.decrypt(ret.title);
+    ret.content = cryptr.decrypt(ret.content);
   }
 });
 
 NoteSchema.pre('save',
   function(next) {
-    this.content = simpleCrypto.encrypt(this.content);
-    this.title = simpleCrypto.encrypt(this.title);
+    this.content = cryptr.encrypt(this.content);
+    this.title = cryptr.encrypt(this.title);
     return next();
   },
   function(err) {
