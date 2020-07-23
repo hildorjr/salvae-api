@@ -15,12 +15,13 @@ class NoteController {
   }
 
   async update(req, res) {
-    let note = await Note.findOneAndUpdate({ userId: req.userId, _id: req.params.id }, {
-      title: req.body.title,
-      content: req.body.content
-    }, { new: true });
+    let note = await Note.findOne({ userId: req.userId, _id: req.params.id });
     if (!note)
       res.status(404).send({ error: 'Note not found' });
+
+    note.title = req.body.title;
+    note.content = req.body.content;
+    note = await note.save();
 
     return res.status(200).send(note);
   }

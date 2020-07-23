@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
-import Cryptr from 'cryptr';
 import dotenv from 'dotenv';
+import SimpleEncryptor from 'simple-encryptor';
 
 dotenv.config();
 
-const cryptr = new Cryptr(process.env.SALT);
+const encryptor = SimpleEncryptor(process.env.SALT);
 
 const NoteSchema = new mongoose.Schema({
   userId:  {
@@ -22,26 +22,23 @@ const NoteSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
+NoteSchema.pre('save', function(next) {
+  var note = this;
+  if (!note.isModified('title') && !note.isModified('content')) return next();
+  note.title = encryptor.encrypt(note.title);
+  note.content = encryptor.encrypt(note.content);
+  next();
+});
+
 NoteSchema.set('toJSON', {
   transform: function (doc, ret, options) {
     ret.id = ret._id;
     delete ret._id;
     delete ret.__v;
-    ret.title = cryptr.decrypt(ret.title);
-    ret.content = cryptr.decrypt(ret.content);
+    ret.title = encryptor.decrypt(ret.title);
+    ret.content = encryptor.decrypt(ret.content);
   }
 });
-
-NoteSchema.pre('save',
-  function(next) {
-    this.content = cryptr.encrypt(this.content);
-    this.title = cryptr.encrypt(this.title);
-    return next();
-  },
-  function(err) {
-    next(err);
-  }
-);
 
 const Note = mongoose.model('notes', NoteSchema);
 

@@ -19,23 +19,22 @@
   },
   "homepage": "https://github.com/hildorjr/salvae-api#readme",
   "dependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "cryptr": "^6.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.23.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.24",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.4",
+    "simple-encryptor": "^4.0.0",
     "swagger-jsdoc": "^4.0.0",
-    "swagger-ui-express": "^4.1.4",
-    "@babel/core": "^7.10.5",
-    "@babel/node": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "babel-loader": "^8.1.0",
-    "nodemon": "^2.0.4"
+    "swagger-ui-express": "^4.1.4"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
