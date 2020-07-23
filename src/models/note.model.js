@@ -4,7 +4,7 @@ import SimpleCrypto from 'simple-crypto-js';
 
 dotenv.config();
 
-const simpleCrypto = new SimpleCrypto(process.env.SALT)
+const simpleCrypto = new SimpleCrypto(process.env.SALT);
 
 const NoteSchema = new mongoose.Schema({
   userId:  {
