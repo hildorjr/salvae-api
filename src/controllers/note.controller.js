@@ -9,6 +9,14 @@ class NoteController {
     return res.status(200).send(notes);
   }
 
+  async get(req, res) {
+    let note = await Note.findOne({ userId: req.userId, _id: req.params.id });
+    if (!note)
+      res.status(404).send({ error: 'Note not found' });
+      
+    return res.status(200).send(note);
+  }
+
   async create(req, res) {
     let note = await Note.create({ ...req.body, userId: req.userId });
     return res.status(200).send(note);

@@ -171,6 +171,23 @@ routes.use('/notes', AuthMiddleware);
 routes.get('/notes', NoteController.getAll);
 /**
  * @swagger
+ * /notes:
+ *   get:
+ *     summary: Gets user note
+ *     description: Returns one user note
+ *     produces:
+ *      - application/json
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/definitions/Note'
+ */
+routes.get('/notes/:id', NoteController.get);
+/**
+ * @swagger
  *
  * /notes:
  *   post:
