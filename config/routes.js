@@ -175,6 +175,13 @@ routes.get('/notes', NoteController.getAll);
  *   get:
  *     summary: Gets user note
  *     description: Returns one user note
+ *     parameters:
+ *       - in: path
+ *         name: noteId
+ *         schema:
+ *            type: string
+ *         required: true
+ *         description: Unique ID of the note to get
  *     produces:
  *      - application/json
  *     responses:
