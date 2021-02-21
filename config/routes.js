@@ -171,7 +171,7 @@ routes.use('/notes', AuthMiddleware);
 routes.get('/notes', NoteController.getAll);
 /**
  * @swagger
- * /notes:
+ * /notes/{noteId}:
  *   get:
  *     summary: Gets user note
  *     description: Returns one user note
